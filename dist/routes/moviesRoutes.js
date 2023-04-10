@@ -1,10 +1,10 @@
 import { Router } from "express";
 import moviesControllers from "../controllers/moviesControllers.js";
-var moviesRouter = Router();
-moviesRouter.get("/", moviesControllers.findAllMovies);
-moviesRouter.get("/:plataform", moviesControllers.findMoviesByPlataform);
-moviesRouter.get("/:genre", moviesControllers.findMoviesByGenre);
-moviesRouter.post("/", moviesControllers.create);
-moviesRouter.put("/", moviesControllers.update);
-moviesRouter.delete("/", moviesControllers.deleteMovie);
-export default moviesRouter;
+var routes = Router();
+routes.get("/movies/idUser", moviesControllers.findAllMovies);
+routes.get("/movies/:plataform", moviesControllers.findMoviesByPlataform);
+routes.get("/movies/:genre", moviesControllers.findMoviesByGenre);
+routes.post("/movies", moviesControllers.create);
+routes.put("/movies/:movieId", moviesControllers.update);
+routes.delete("/movies/:movieId", moviesControllers.deleteMovie);
+export default routes;

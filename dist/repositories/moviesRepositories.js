@@ -35,20 +35,96 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import db from "../config/database.js";
+function findAll(id_user) {
+    return __awaiter(this, void 0, void 0, function () {
+        var movies;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db.query("SELECT * FROM movies WHERE id_user=$1", [
+                        id_user,
+                    ])];
+                case 1:
+                    movies = _a.sent();
+                    return [2 /*return*/, movies.rows];
+            }
+        });
+    });
+}
+function findByPlataform(_a) {
+    var plataform = _a.plataform;
+    return __awaiter(this, void 0, void 0, function () {
+        var movies;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, db.query("SELECT * FROM movies WHERE plataform=$1", [plataform])];
+                case 1:
+                    movies = _b.sent();
+                    return [2 /*return*/, movies.rows];
+            }
+        });
+    });
+}
+function findByGenre(_a) {
+    var genre = _a.genre;
+    return __awaiter(this, void 0, void 0, function () {
+        var movies;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, db.query("SELECT * FROM movies WHERE genre=$1", [genre])];
+                case 1:
+                    movies = _b.sent();
+                    return [2 /*return*/, movies.rows];
+            }
+        });
+    });
+}
 function create(_a) {
     var movie_name = _a.movie_name, plataform = _a.plataform, movie_img = _a.movie_img, genre = _a.genre, id_user = _a.id_user;
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_b) {
             switch (_b.label) {
-                case 0: return [4 /*yield*/, db.query("INSERT INTO movies (\n     movie_name, plataform, movie_img, genre, id_user,)\n     VALUES ($1,$2,$3,$4,$5)")];
+                case 0: return [4 /*yield*/, db.query("INSERT INTO movies (\n     movie_name, plataform, movie_img, genre, id_user,)\n     VALUES ($1,$2,$3,$4,$5)", [movie_name, plataform, movie_img, genre, id_user])];
                 case 1:
-                    _b.sent(),
-                        [movie_name, plataform, movie_img, genre, id_user];
+                    _b.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function update(_a) {
+    var movieId = _a.movieId, notes = _a.notes;
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, db.query("UPDATE movies set is_watch = true WHERE id=$1", [movieId])];
+                case 1:
+                    _b.sent();
+                    return [4 /*yield*/, db.query("UPDATE movies set notes = $1 WHERE id=$2", [notes, movieId])];
+                case 2:
+                    _b.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function deleteMovie(_a) {
+    var movieId = _a.movieId;
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, db.query("DELETE  FROM movies WHERE id=$1", [movieId])];
+                case 1:
+                    _b.sent();
                     return [2 /*return*/];
             }
         });
     });
 }
 export default {
-    create: create
+    findAll: findAll,
+    findByPlataform: findByPlataform,
+    findByGenre: findByGenre,
+    create: create,
+    update: update,
+    deleteMovie: deleteMovie,
 };

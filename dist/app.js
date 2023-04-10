@@ -1,5 +1,5 @@
 import express from "express";
-import routes from "./routes/index.js";
+import routes from "./routes/moviesRoutes.js";
 import cors from "cors";
 import { handleApplicationsErrors } from "./middlewares/errorMiddlerares.js";
 var server = express();

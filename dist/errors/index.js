@@ -1,18 +1,16 @@
-export function conflitError(message) {
+export function conflitError() {
     return {
-        name: 'ConflitError',
-        message: message,
+        name: "ConflitError",
+        message: "Conflit Error",
     };
 }
 export function notFound() {
     return {
-        name: 'NotFoundError',
-        message: 'No result for this search!',
+        name: "NotFoundError",
+        message: "No result for this search!",
     };
 }
-export function unauthorizedError() {
-    return {
-        name: 'UnauthorizedError',
-        message: 'You must be signed in to continue',
-    };
-}
+export default {
+    conflitError: conflitError,
+    notFound: notFound,
+};

@@ -34,13 +34,94 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+import { notFound } from "../errors";
 import moviesRepositories from "../repositories/moviesRepositories.js";
+function findAllMovies(_a) {
+    var id_user = _a.id_user;
+    return __awaiter(this, void 0, void 0, function () {
+        var movies;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, moviesRepositories.findAll(id_user)];
+                case 1:
+                    movies = _b.sent();
+                    if (!movies)
+                        throw notFound();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function findMoviesByPlataform(_a) {
+    var plataform = _a.plataform;
+    return __awaiter(this, void 0, void 0, function () {
+        var movies;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, moviesRepositories.findByPlataform({ plataform: plataform })];
+                case 1:
+                    movies = _b.sent();
+                    if (!movies)
+                        throw notFound();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function findMoviesByGenre(_a) {
+    var genre = _a.genre;
+    return __awaiter(this, void 0, void 0, function () {
+        var movies;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, moviesRepositories.findByGenre({ genre: genre })];
+                case 1:
+                    movies = _b.sent();
+                    if (!movies)
+                        throw notFound();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 function create(_a) {
     var movie_name = _a.movie_name, plataform = _a.plataform, movie_img = _a.movie_img, genre = _a.genre, id_user = _a.id_user;
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_b) {
             switch (_b.label) {
-                case 0: return [4 /*yield*/, moviesRepositories.create({ movie_name: movie_name, plataform: plataform, movie_img: movie_img, genre: genre, id_user: id_user })];
+                case 0: return [4 /*yield*/, moviesRepositories.create({
+                        movie_name: movie_name,
+                        plataform: plataform,
+                        movie_img: movie_img,
+                        genre: genre,
+                        id_user: id_user,
+                    })];
+                case 1:
+                    _b.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function update(_a) {
+    var movieId = _a.movieId, notes = _a.notes;
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, moviesRepositories.update({ movieId: movieId, notes: notes })];
+                case 1:
+                    _b.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function deleteMovie(_a) {
+    var movieId = _a.movieId;
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, moviesRepositories.deleteMovie({ movieId: movieId })];
                 case 1:
                     _b.sent();
                     return [2 /*return*/];
@@ -49,5 +130,10 @@ function create(_a) {
     });
 }
 export default {
-    create: create
+    findAllMovies: findAllMovies,
+    findMoviesByPlataform: findMoviesByPlataform,
+    findMoviesByGenre: findMoviesByGenre,
+    create: create,
+    update: update,
+    deleteMovie: deleteMovie,
 };
